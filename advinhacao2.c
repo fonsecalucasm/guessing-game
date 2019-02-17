@@ -6,12 +6,14 @@ int main() {
     printf("******************************************\n");
 
     int numeroSecreto = 42;
+    int tentativas = 0;
+    int acertou = 0;
 
-    int tentativaAtual = 1;
-    int tentativaMaxima = 3;
+    do {
+        tentativas++;
 
-    for (tentativaAtual; tentativaAtual <= tentativaMaxima; tentativaAtual++) {
-        printf("* Tentativa %d de %d                      *\n", tentativaAtual, tentativaMaxima);
+        printf("******************************************\n");
+        printf("* Tentativa %d                           *\n", tentativas);
         printf("* Qual seu chute?                        *\n");
 
         int chute;
@@ -20,11 +22,11 @@ int main() {
 
         if (chute < 0) {
             printf("* Você não pode usar números negativos!   *\n");
-            tentativaAtual--;
+            tentativas--;
             continue;
         }
 
-        int acertou = (numeroSecreto == chute);
+        acertou = (numeroSecreto == chute);
         int maior = (chute < numeroSecreto);
 
         if (acertou) {
@@ -36,9 +38,14 @@ int main() {
         } else {
             printf("* Não foi desta vez. Tente mais uma vez!!*\n");
             printf("* Dica: O número secreto é menor...      *\n");
-        }        
-    }
+        }
 
+    } while(acertou == 0);
+
+    int pontos = 101 - tentativas;
+    printf("******************************************\n");
+    printf("* Você acertou em %d tentativas          *\n", tentativas);
+    printf("* Você fez %d pontos!!                   *\n", pontos);
     printf("* Fim de jogo!                           *\n");
     printf("******************************************\n");
 }
