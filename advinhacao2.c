@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
 	printf("******************************************\n");
@@ -10,6 +11,7 @@ int main() {
     int acertou = 0;
 
     double pontos = 1000;
+    double pontosperdidos = 0;
 
     do {
         tentativas++;
@@ -31,7 +33,11 @@ int main() {
         acertou = (numeroSecreto == chute);
         int maior = (chute < numeroSecreto);
 
-        pontos = pontos - (chute - numeroSecreto) / 2.0;
+        pontosperdidos = (chute - numeroSecreto) / 2.0;
+        if (pontosperdidos < 0) {
+            pontosperdidos = abs(pontosperdidos);
+        }
+        pontos = pontos - pontosperdidos;
 
         if (acertou) {
             printf("* Parabéns!! Você acertou!! =D           *\n");
