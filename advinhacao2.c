@@ -1,12 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-int main() {
-	printf("******************************************\n");
+void printWelcomeMessage() {
+    printf("******************************************\n");
     printf("* Bem-vindo ao nosso jogo de adivinhação *\n");
     printf("******************************************\n");
+}
 
-    int numeroSecreto = 42;
+/*
+Get the seconds until now and use it as a seed to rand function.
+Then we use return the rest of division for 100 (the number will be between 0 and 99).
+*/
+int generateSecretNumber() {
+    int seconds = time(0);
+    srand(seconds);
+
+    return rand() % 100;
+}
+
+void printResult(int tentativas, double pontos) {
+    printf("******************************************\n");
+    printf("* Você acertou em %d tentativas          *\n", tentativas);
+    printf("* Você fez %.2f pontos!!                  *\n", pontos);
+    printf("* Fim de jogo!                           *\n");
+    printf("******************************************\n");
+}
+
+int main() {
+	
+    printWelcomeMessage();
+
+    int numeroSecreto = generateSecretNumber();
     int tentativas = 0;
     int acertou = 0;
 
@@ -52,9 +77,5 @@ int main() {
 
     } while(acertou == 0);
     
-    printf("******************************************\n");
-    printf("* Você acertou em %d tentativas          *\n", tentativas);
-    printf("* Você fez %.2f pontos!!                  *\n", pontos);
-    printf("* Fim de jogo!                           *\n");
-    printf("******************************************\n");
+    printResult(tentativas, pontos);
 }
