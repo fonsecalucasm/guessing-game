@@ -9,13 +9,13 @@ int main() {
     int tentativas = 0;
     int acertou = 0;
 
-    int pontos = 1000;
+    double pontos = 1000;
 
     do {
         tentativas++;
 
         printf("******************************************\n");
-        printf("* Tentativa %d                           *\n", tentativas);
+        printf("* Tentativa %d                            *\n", tentativas);
         printf("* Qual seu chute?                        *\n");
 
         int chute;
@@ -31,7 +31,7 @@ int main() {
         acertou = (numeroSecreto == chute);
         int maior = (chute < numeroSecreto);
 
-        pontos = pontos - (chute - numeroSecreto) / 2;
+        pontos = pontos - (chute - numeroSecreto) / 2.0;
 
         if (acertou) {
             printf("* Parabéns!! Você acertou!! =D           *\n");
@@ -48,7 +48,7 @@ int main() {
     
     printf("******************************************\n");
     printf("* Você acertou em %d tentativas          *\n", tentativas);
-    printf("* Você fez %d pontos!!                   *\n", pontos);
+    printf("* Você fez %.2f pontos!!                  *\n", pontos);
     printf("* Fim de jogo!                           *\n");
     printf("******************************************\n");
 }
